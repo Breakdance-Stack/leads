@@ -1,0 +1,1487 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leadgenerierung Quiz – Finde deine perfekte Leadquelle</title>
+  <meta name="description" content="Beantworte 11 kurze Fragen und finde heraus, welche Leadquelle perfekt zu deinem Business passt. Täglich qualifizierte Kundenanfragen generieren.">
+  <meta name="keywords" content="Leadgenerierung, Kundenanfragen, Leads, Kundengewinnung, qualifizierte Anfragen">
+  <meta name="author" content="SEO Masterplan">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://breakdance-stack.github.io/leads/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Leadgenerierung Quiz – Finde deine perfekte Leadquelle">
+  <meta property="og:description" content="Beantworte 11 kurze Fragen und erfahre, wie du täglich qualifizierte Kundenanfragen generieren kannst.">
+  <meta property="og:url" content="https://breakdance-stack.github.io/leads/">
+  <meta property="og:image" content="https://breakdance-stack.github.io/leads/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="de_DE">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Leadgenerierung Quiz – Finde deine perfekte Leadquelle">
+  <meta name="twitter:description" content="Beantworte 11 kurze Fragen und erfahre, wie du täglich qualifizierte Kundenanfragen generieren kannst.">
+  <meta name="twitter:image" content="https://breakdance-stack.github.io/leads/assets/img/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Leadgenerierung Quiz",
+    "description": "Finde heraus, welche Leadquelle perfekt zu deinem Business passt.",
+    "url": "https://breakdance-stack.github.io/leads/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "SEO Masterplan"
+    }
+  }
+  </script>
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS
+       ============================================= */
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-hover: #334155;
+      --bg-selected: #1d4ed8;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-glow: rgba(59, 130, 246, 0.3);
+      --green: #22c55e;
+      --green-glow: rgba(34, 197, 94, 0.3);
+      --orange: #f59e0b;
+      --radius: 16px;
+      --radius-sm: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.3);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      min-height: 100dvh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =============================================
+       QUIZ CONTAINER
+       ============================================= */
+    .quiz-wrapper {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* =============================================
+       HEADER / PROGRESS
+       ============================================= */
+    .quiz-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0;
+    }
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px 24px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--accent); }
+    .step-counter {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .progress-bar {
+      height: 3px;
+      background: rgba(255,255,255,0.06);
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #818cf8);
+      border-radius: 0 3px 3px 0;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+
+    /* =============================================
+       SLIDES
+       ============================================= */
+    .quiz-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px 100px;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 720px;
+      animation: slideIn 0.4s ease;
+    }
+    .slide.active { display: block; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .question-text {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .question-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    /* =============================================
+       OPTION CARDS (with images)
+       ============================================= */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .options-grid.two-col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .options-grid.three-col {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .option-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 2px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      overflow: hidden;
+    }
+    .option-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(59,130,246,0.15);
+    }
+    .option-card.selected {
+      border-color: var(--accent);
+      background: rgba(59, 130, 246, 0.1);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 32px rgba(59,130,246,0.2);
+    }
+    .option-card .option-img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+      background: var(--bg-hover);
+    }
+    .option-card .option-img-placeholder {
+      width: 100%;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      background: linear-gradient(135deg, var(--bg-hover), var(--bg-card));
+    }
+    .option-card .option-body {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .option-key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      border: 1.5px solid var(--text-dim);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .option-card.selected .option-key {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .option-card:hover .option-key {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .option-card.selected:hover .option-key {
+      color: #fff;
+    }
+    .option-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Multi-select hint */
+    .multi-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    /* =============================================
+       TEXT INPUT / EMAIL / PHONE
+       ============================================= */
+    .input-group {
+      margin-bottom: 20px;
+    }
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .input-field {
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 2px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: 16px;
+      font-family: inherit;
+      transition: var(--transition);
+      outline: none;
+    }
+    .input-field:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+    }
+    .input-field::placeholder {
+      color: var(--text-dim);
+    }
+    textarea.input-field {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .input-error {
+      color: #ef4444;
+      font-size: 13px;
+      margin-top: 6px;
+      display: none;
+    }
+    .input-error.show { display: block; }
+
+    /* =============================================
+       NAVIGATION BUTTONS
+       ============================================= */
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 32px;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      outline: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+    .btn-primary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-back {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1.5px solid rgba(255,255,255,0.1);
+    }
+    .btn-back:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .btn-submit {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 4px 16px var(--green-glow);
+      padding: 16px 36px;
+      font-size: 16px;
+    }
+    .btn-submit:hover {
+      background: #16a34a;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--green-glow);
+    }
+    .btn-submit:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* =============================================
+       INTRO SCREEN
+       ============================================= */
+    .intro-screen {
+      text-align: center;
+      max-width: 600px;
+    }
+    .intro-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, var(--accent), #818cf8);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+    .intro-screen h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+    }
+    .intro-screen h1 span {
+      background: linear-gradient(135deg, var(--accent), #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .intro-screen p {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    .intro-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+    .intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .btn-start {
+      padding: 18px 48px;
+      font-size: 17px;
+      border-radius: 14px;
+    }
+
+    /* =============================================
+       RESULT SCREEN
+       ============================================= */
+    .result-screen {
+      text-align: center;
+      max-width: 640px;
+    }
+    .result-check {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, var(--green), #4ade80);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: scaleIn 0.5s ease;
+    }
+    @keyframes scaleIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .result-check svg {
+      width: 40px;
+      height: 40px;
+      color: #fff;
+    }
+    .result-screen h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .result-screen .result-sub {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .result-cta {
+      background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(129,140,248,0.1));
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 40px;
+    }
+    .result-cta p {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .result-cta .sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Testimonials */
+    .testimonials-heading {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+    .testimonials {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      text-align: left;
+    }
+    .testimonial {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+    }
+    .testimonial-stars {
+      color: var(--orange);
+      font-size: 14px;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+    .testimonial-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .testimonial-author {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .testimonial-role {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+    @media (max-width: 640px) {
+      .options-grid,
+      .options-grid.two-col,
+      .options-grid.three-col {
+        grid-template-columns: 1fr;
+      }
+      .option-card .option-img,
+      .option-card .option-img-placeholder {
+        height: 80px;
+      }
+      .quiz-body {
+        padding: 90px 16px 80px;
+        align-items: flex-start;
+      }
+      .nav-row {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 12px 16px;
+        margin: 0;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        z-index: 100;
+      }
+      .btn { padding: 12px 20px; font-size: 14px; }
+      .btn-start { padding: 16px 36px; }
+      .header-inner { padding: 12px 16px 10px; }
+    }
+
+    @media (min-width: 641px) {
+      .testimonials {
+        grid-template-columns: 1fr 1fr;
+      }
+      .options-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+
+    /* =============================================
+       LOADING SPINNER
+       ============================================= */
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2.5px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Keyboard hint */
+    .key-hint {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 16px;
+    }
+    .key-hint kbd {
+      display: inline-block;
+      padding: 2px 6px;
+      background: var(--bg-hover);
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-wrapper">
+  <!-- HEADER -->
+  <header class="quiz-header">
+    <div class="header-inner">
+      <div class="logo">SEO <span>Masterplan</span></div>
+      <div class="step-counter" id="stepCounter"></div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </header>
+
+  <!-- QUIZ BODY -->
+  <main class="quiz-body">
+
+    <!-- INTRO -->
+    <div class="slide active" id="slideIntro">
+      <div class="intro-screen">
+        <div class="intro-icon">&#x1F680;</div>
+        <h1>Finde deine <span>perfekte Leadquelle</span></h1>
+        <p>Beantworte 11 kurze Fragen und erfahre, wie du täglich qualifizierte Kundenanfragen für dein Business generieren kannst.</p>
+        <div class="intro-badges">
+          <div class="intro-badge">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v4m0 12v4m-7.07-3.93l2.83-2.83m8.48-8.48l2.83-2.83M2 12h4m12 0h4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83"/></svg>
+            2 Minuten
+          </div>
+          <div class="intro-badge">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            100% kostenlos
+          </div>
+          <div class="intro-badge">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            Daten geschützt
+          </div>
+        </div>
+        <button class="btn btn-primary btn-start" onclick="startQuiz()">
+          Quiz starten
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 1: Bereich -->
+    <div class="slide" id="slide1">
+      <div class="question-number">1</div>
+      <h2 class="question-text">In welchem Bereich bist Du tätig?</h2>
+      <p class="question-sub">Wähle die Option, die am besten zu dir passt.</p>
+      <div class="options-grid three-col" data-name="bereich">
+        <div class="option-card" data-value="Agentur" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F3E2;</div>
+          <div class="option-body">
+            <span class="option-key">A</span>
+            <span class="option-label">Agentur</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Coach/Trainer/Berater" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F393;</div>
+          <div class="option-body">
+            <span class="option-key">B</span>
+            <span class="option-label">Coach / Trainer / Berater</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Experte" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F4A1;</div>
+          <div class="option-body">
+            <span class="option-key">C</span>
+            <span class="option-label">Experte</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Mittelstand" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F3ED;</div>
+          <div class="option-body">
+            <span class="option-key">D</span>
+            <span class="option-label">Mittelstand</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Selbständig" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F4BC;</div>
+          <div class="option-body">
+            <span class="option-key">E</span>
+            <span class="option-label">Selbständig</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Konzern" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F3D7;&#xFE0F;</div>
+          <div class="option-body">
+            <span class="option-key">F</span>
+            <span class="option-label">Konzern</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next1" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 2: Herausforderungen (Multi) -->
+    <div class="slide" id="slide2">
+      <div class="question-number">2</div>
+      <h2 class="question-text">Hast Du aktuell Herausforderungen bei der Leadgenerierung?</h2>
+      <div class="multi-hint">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+        Du kannst mehr als eine Option auswählen
+      </div>
+      <div class="options-grid two-col" data-name="herausforderungen" data-multi="true">
+        <div class="option-card" data-value="Leadquelle ist nicht skalierbar" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F4C9;</div>
+          <div class="option-body">
+            <span class="option-key">A</span>
+            <span class="option-label">Leadquelle ist nicht skalierbar</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Leads sind sehr teuer" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F4B8;</div>
+          <div class="option-body">
+            <span class="option-key">B</span>
+            <span class="option-label">Leads sind sehr teuer</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Anzahl der Leads ist zu gering" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F4C9;</div>
+          <div class="option-body">
+            <span class="option-key">C</span>
+            <span class="option-label">Anzahl der Leads ist zu gering</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Leadgenerierung kostet zu viel Zeit" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x23F3;</div>
+          <div class="option-body">
+            <span class="option-key">D</span>
+            <span class="option-label">Leadgenerierung kostet zu viel Zeit</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Habe keine Zeit mich darum zu kümmern" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F614;</div>
+          <div class="option-body">
+            <span class="option-key">E</span>
+            <span class="option-label">Habe keine Zeit mich darum zu kümmern</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Leads sind unqualifiziert" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F44E;</div>
+          <div class="option-body">
+            <span class="option-key">F</span>
+            <span class="option-label">Leads sind unqualifiziert</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Leads haben kein Geld" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F6AB;</div>
+          <div class="option-body">
+            <span class="option-key">G</span>
+            <span class="option-label">Leads haben kein Geld</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next2" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 3: Anfragen pro Monat -->
+    <div class="slide" id="slide3">
+      <div class="question-number">3</div>
+      <h2 class="question-text">Wieviel Anfragen erhältst Du aktuell pro Monat?</h2>
+      <p class="question-sub">Schätze die ungefähre Anzahl.</p>
+      <div class="options-grid three-col" data-name="anfragen_monat">
+        <div class="option-card" data-value="1-5" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x261D;&#xFE0F;</div>
+          <div class="option-body">
+            <span class="option-key">A</span>
+            <span class="option-label">1 – 5</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="5-10" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x270B;</div>
+          <div class="option-body">
+            <span class="option-key">B</span>
+            <span class="option-label">5 – 10</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="10-50" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F4CA;</div>
+          <div class="option-body">
+            <span class="option-key">C</span>
+            <span class="option-label">10 – 50</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="50-100" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F4C8;</div>
+          <div class="option-body">
+            <span class="option-key">D</span>
+            <span class="option-label">50 – 100</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Über 100" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F525;</div>
+          <div class="option-body">
+            <span class="option-key">E</span>
+            <span class="option-label">Über 100</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next3" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 4: Angebotspreis -->
+    <div class="slide" id="slide4">
+      <div class="question-number">4</div>
+      <h2 class="question-text">Wieviel kostet dein Angebot?</h2>
+      <p class="question-sub">Durchschnittlicher Wert pro Kunde/Auftrag.</p>
+      <div class="options-grid three-col" data-name="angebotspreis">
+        <div class="option-card" data-value="Unter 1000€" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F4B5;</div>
+          <div class="option-body">
+            <span class="option-key">A</span>
+            <span class="option-label">Unter 1.000 €</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="1000-2000€" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F4B0;</div>
+          <div class="option-body">
+            <span class="option-key">B</span>
+            <span class="option-label">1.000 – 2.000 €</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="2000-5000€" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F4B0;</div>
+          <div class="option-body">
+            <span class="option-key">C</span>
+            <span class="option-label">2.000 – 5.000 €</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="5000-10000€" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F48E;</div>
+          <div class="option-body">
+            <span class="option-key">D</span>
+            <span class="option-label">5.000 – 10.000 €</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="10000-20000€" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F48E;</div>
+          <div class="option-body">
+            <span class="option-key">E</span>
+            <span class="option-label">10.000 – 20.000 €</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="über 20000€" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F451;</div>
+          <div class="option-body">
+            <span class="option-key">F</span>
+            <span class="option-label">Über 20.000 €</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next4" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 5: Kunden pro Monat -->
+    <div class="slide" id="slide5">
+      <div class="question-number">5</div>
+      <h2 class="question-text">Wieviel Kunden kannst Du pro Monat annehmen?</h2>
+      <p class="question-sub">Deine aktuelle Kapazität.</p>
+      <div class="options-grid three-col" data-name="kapazitaet">
+        <div class="option-card" data-value="unter 5" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F464;</div>
+          <div class="option-body">
+            <span class="option-key">A</span>
+            <span class="option-label">Unter 5</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="5-10" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F465;</div>
+          <div class="option-body">
+            <span class="option-key">B</span>
+            <span class="option-label">5 – 10</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="10-50" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F46B;</div>
+          <div class="option-body">
+            <span class="option-key">C</span>
+            <span class="option-label">10 – 50</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="50-100" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F46A;</div>
+          <div class="option-body">
+            <span class="option-key">D</span>
+            <span class="option-label">50 – 100</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Über 100" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F3C6;</div>
+          <div class="option-body">
+            <span class="option-key">E</span>
+            <span class="option-label">Über 100</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next5" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 6: Lead-Quellen (Multi) -->
+    <div class="slide" id="slide6">
+      <div class="question-number">6</div>
+      <h2 class="question-text">Wie generierst Du aktuell deine Leads?</h2>
+      <div class="multi-hint">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+        Du kannst mehr als eine Option auswählen
+      </div>
+      <div class="options-grid three-col" data-name="leadquellen" data-multi="true">
+        <div class="option-card" data-value="Facebook/IG Ads" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F4F1;</div>
+          <div class="option-body">
+            <span class="option-key">A</span>
+            <span class="option-label">Facebook / IG Ads</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Kaltakquise" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F4DE;</div>
+          <div class="option-body">
+            <span class="option-key">B</span>
+            <span class="option-label">Kaltakquise</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Google Ads" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F50D;</div>
+          <div class="option-body">
+            <span class="option-key">C</span>
+            <span class="option-label">Google Ads</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Content Marketing" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x270D;&#xFE0F;</div>
+          <div class="option-body">
+            <span class="option-key">D</span>
+            <span class="option-label">Content Marketing</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="LinkedIn" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F4BC;</div>
+          <div class="option-body">
+            <span class="option-key">E</span>
+            <span class="option-label">LinkedIn</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Instagram" onclick="selectMulti(this)">
+          <div class="option-img-placeholder">&#x1F4F7;</div>
+          <div class="option-body">
+            <span class="option-key">F</span>
+            <span class="option-label">Instagram</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next6" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 7: Region -->
+    <div class="slide" id="slide7">
+      <div class="question-number">7</div>
+      <h2 class="question-text">Wo möchtest Du Anfragen gewinnen?</h2>
+      <p class="question-sub">Dein Zielmarkt.</p>
+      <div class="options-grid three-col" data-name="region">
+        <div class="option-card" data-value="Regional" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F3D8;&#xFE0F;</div>
+          <div class="option-body">
+            <span class="option-key">A</span>
+            <span class="option-label">Regional</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Deutschland" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F1E9;&#x1F1EA;</div>
+          <div class="option-body">
+            <span class="option-key">B</span>
+            <span class="option-label">Deutschland</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Österreich" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F1E6;&#x1F1F9;</div>
+          <div class="option-body">
+            <span class="option-key">C</span>
+            <span class="option-label">Österreich</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Schweiz" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F1E8;&#x1F1ED;</div>
+          <div class="option-body">
+            <span class="option-key">D</span>
+            <span class="option-label">Schweiz</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="Weltweit" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F30D;</div>
+          <div class="option-body">
+            <span class="option-key">E</span>
+            <span class="option-label">Weltweit</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next7" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 8: Freitext -->
+    <div class="slide" id="slide8">
+      <div class="question-number">8</div>
+      <h2 class="question-text">Was ist dir bei den Anfragen wichtig?</h2>
+      <p class="question-sub">Beschreibe kurz, worauf es dir bei qualifizierten Leads ankommt.</p>
+      <div class="input-group">
+        <textarea class="input-field" id="freitext" placeholder="z.B. Leads sollten bereits Interesse an meiner Dienstleistung haben, Budget vorhanden sein..." oninput="validateText()"></textarea>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next8" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 9: Gewünschte Anfragen/Woche -->
+    <div class="slide" id="slide9">
+      <div class="question-number">9</div>
+      <h2 class="question-text">Wieviel qualifizierte Anfragen würdest Du gerne pro Woche generieren?</h2>
+      <p class="question-sub">Dein Wunschziel.</p>
+      <div class="options-grid three-col" data-name="wunsch_anfragen">
+        <div class="option-card" data-value="2-5" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F331;</div>
+          <div class="option-body">
+            <span class="option-key">A</span>
+            <span class="option-label">2 – 5</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="5-10" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F33F;</div>
+          <div class="option-body">
+            <span class="option-key">B</span>
+            <span class="option-label">5 – 10</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="10-20" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F332;</div>
+          <div class="option-body">
+            <span class="option-key">C</span>
+            <span class="option-label">10 – 20</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="20-50" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F3AF;</div>
+          <div class="option-body">
+            <span class="option-key">D</span>
+            <span class="option-label">20 – 50</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="50-100" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F680;</div>
+          <div class="option-body">
+            <span class="option-key">E</span>
+            <span class="option-label">50 – 100</span>
+          </div>
+        </div>
+        <div class="option-card" data-value="über 100" onclick="selectSingle(this)">
+          <div class="option-img-placeholder">&#x1F4A5;</div>
+          <div class="option-body">
+            <span class="option-key">F</span>
+            <span class="option-label">Über 100</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next9" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 10: E-Mail -->
+    <div class="slide" id="slide10">
+      <div class="question-number">10</div>
+      <h2 class="question-text">Deine E-Mail Adresse</h2>
+      <p class="question-sub">Damit wir dir deine persönliche Auswertung senden können.</p>
+      <div class="input-group">
+        <label for="email">E-Mail *</label>
+        <input type="email" class="input-field" id="email" placeholder="deine@email.de" oninput="validateEmail()" autocomplete="email">
+        <div class="input-error" id="emailError">Bitte gib eine gültige E-Mail Adresse ein.</div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-primary" id="next10" disabled onclick="goNext()">
+          Weiter
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12h12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FRAGE 11: WhatsApp / Kontakt -->
+    <div class="slide" id="slide11">
+      <div class="question-number">11</div>
+      <h2 class="question-text">Auf welcher WhatsApp Nummer kannst Du die Auswertung erhalten?</h2>
+      <p class="question-sub">Wir senden dir deine persönliche Analyse direkt per WhatsApp.</p>
+      <div class="input-group">
+        <label for="vorname">Vorname *</label>
+        <input type="text" class="input-field" id="vorname" placeholder="Max" oninput="validateContact()" autocomplete="given-name">
+      </div>
+      <div class="input-group">
+        <label for="telefon">Telefonnummer (WhatsApp) *</label>
+        <input type="tel" class="input-field" id="telefon" placeholder="+49 170 1234567" oninput="validateContact()" autocomplete="tel">
+        <div class="input-error" id="telError">Bitte gib eine gültige Telefonnummer ein.</div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-back" onclick="goBack()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 12H6"/></svg>
+          Zurück
+        </button>
+        <button class="btn btn-submit" id="submitBtn" disabled onclick="submitQuiz()">
+          Auswertung erhalten
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="slide" id="slideResult">
+      <div class="result-screen">
+        <div class="result-check">
+          <svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h2>Wir haben dein Quiz erhalten!</h2>
+        <p class="result-sub">Erfahre jetzt, was die perfekte Leadquelle für dich ist...</p>
+
+        <div class="result-cta">
+          <p>Täglich qualifizierte Kundenanfragen generieren</p>
+          <span class="sub">Wir melden uns innerhalb von 24 Stunden bei dir per WhatsApp.</span>
+        </div>
+
+        <div class="testimonials-heading">Das sagen andere Unternehmer/-innen</div>
+        <div class="testimonials">
+          <div class="testimonial">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"Seit der Zusammenarbeit erhalten wir jede Woche 15+ qualifizierte Anfragen. Vorher waren es vielleicht 2-3 im Monat."</p>
+            <div class="testimonial-author">Marco K.</div>
+            <div class="testimonial-role">Agenturinhaber</div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"Die Leads sind deutlich qualifizierter als alles, was wir vorher über Facebook Ads bekommen haben. Absolute Empfehlung!"</p>
+            <div class="testimonial-author">Sarah M.</div>
+            <div class="testimonial-role">Business Coach</div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"Endlich eine Leadquelle, die planbar und skalierbar funktioniert. Unser Umsatz hat sich in 3 Monaten verdoppelt."</p>
+            <div class="testimonial-author">Thomas R.</div>
+            <div class="testimonial-role">IT-Dienstleister</div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"Wir mussten sogar neue Mitarbeiter einstellen, weil so viele Anfragen reinkamen. Bestes Investment das wir je getätigt haben."</p>
+            <div class="testimonial-author">Lisa W.</div>
+            <div class="testimonial-role">Beraterin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  /* =============================================
+     QUIZ ENGINE
+     ============================================= */
+  const TOTAL_QUESTIONS = 11;
+  let currentSlide = 0; // 0 = intro, 1-11 = questions, 12 = result
+  const answers = {};
+
+  function updateProgress() {
+    const counter = document.getElementById('stepCounter');
+    const fill = document.getElementById('progressFill');
+    if (currentSlide === 0 || currentSlide > TOTAL_QUESTIONS) {
+      counter.textContent = '';
+      fill.style.width = currentSlide > TOTAL_QUESTIONS ? '100%' : '0%';
+    } else {
+      counter.textContent = currentSlide + ' / ' + TOTAL_QUESTIONS;
+      fill.style.width = ((currentSlide / TOTAL_QUESTIONS) * 100) + '%';
+    }
+  }
+
+  function showSlide(index) {
+    document.querySelectorAll('.slide').forEach(function(s) { s.classList.remove('active'); });
+    var id;
+    if (index === 0) id = 'slideIntro';
+    else if (index > TOTAL_QUESTIONS) id = 'slideResult';
+    else id = 'slide' + index;
+    var el = document.getElementById(id);
+    if (el) {
+      el.classList.remove('active');
+      // Force reflow for animation
+      void el.offsetWidth;
+      el.classList.add('active');
+    }
+    currentSlide = index;
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startQuiz() {
+    showSlide(1);
+  }
+
+  function goNext() {
+    if (currentSlide < TOTAL_QUESTIONS) {
+      showSlide(currentSlide + 1);
+    }
+  }
+
+  function goBack() {
+    if (currentSlide > 0) {
+      showSlide(currentSlide - 1);
+    }
+  }
+
+  /* Single select */
+  function selectSingle(card) {
+    var grid = card.closest('.options-grid');
+    var name = grid.getAttribute('data-name');
+    grid.querySelectorAll('.option-card').forEach(function(c) { c.classList.remove('selected'); });
+    card.classList.add('selected');
+    answers[name] = card.getAttribute('data-value');
+    // Enable next button
+    var btn = document.getElementById('next' + currentSlide);
+    if (btn) btn.disabled = false;
+    // Auto-advance after short delay for single selects
+    setTimeout(function() {
+      if (currentSlide < TOTAL_QUESTIONS) goNext();
+    }, 400);
+  }
+
+  /* Multi select */
+  function selectMulti(card) {
+    card.classList.toggle('selected');
+    var grid = card.closest('.options-grid');
+    var name = grid.getAttribute('data-name');
+    var selected = grid.querySelectorAll('.option-card.selected');
+    answers[name] = Array.from(selected).map(function(c) { return c.getAttribute('data-value'); });
+    var btn = document.getElementById('next' + currentSlide);
+    if (btn) btn.disabled = selected.length === 0;
+  }
+
+  /* Text validation */
+  function validateText() {
+    var val = document.getElementById('freitext').value.trim();
+    answers['wichtig'] = val;
+    var btn = document.getElementById('next8');
+    if (btn) btn.disabled = val.length < 3;
+  }
+
+  /* Email validation */
+  function validateEmail() {
+    var val = document.getElementById('email').value.trim();
+    var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var valid = pattern.test(val);
+    var err = document.getElementById('emailError');
+    if (val.length > 0 && !valid) {
+      err.classList.add('show');
+    } else {
+      err.classList.remove('show');
+    }
+    answers['email'] = val;
+    var btn = document.getElementById('next10');
+    if (btn) btn.disabled = !valid;
+  }
+
+  /* Contact validation */
+  function validateContact() {
+    var vorname = document.getElementById('vorname').value.trim();
+    var telefon = document.getElementById('telefon').value.trim();
+    // Phone: at least 6 digits
+    var phonePattern = /[\d]{6,}/;
+    var phoneClean = telefon.replace(/[\s\-\+\(\)]/g, '');
+    var phoneValid = phonePattern.test(phoneClean);
+    var err = document.getElementById('telError');
+    if (telefon.length > 0 && !phoneValid) {
+      err.classList.add('show');
+    } else {
+      err.classList.remove('show');
+    }
+    answers['vorname'] = vorname;
+    answers['telefon'] = telefon;
+    var btn = document.getElementById('submitBtn');
+    if (btn) btn.disabled = !(vorname.length >= 2 && phoneValid);
+  }
+
+  /* Submit */
+  function submitQuiz() {
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Wird gesendet...';
+
+    // Build mailto / send data
+    var body = 'Neuer Lead-Quiz Eintrag:\n\n';
+    body += 'Bereich: ' + (answers.bereich || '-') + '\n';
+    body += 'Herausforderungen: ' + (Array.isArray(answers.herausforderungen) ? answers.herausforderungen.join(', ') : '-') + '\n';
+    body += 'Anfragen/Monat: ' + (answers.anfragen_monat || '-') + '\n';
+    body += 'Angebotspreis: ' + (answers.angebotspreis || '-') + '\n';
+    body += 'Kapazität: ' + (answers.kapazitaet || '-') + '\n';
+    body += 'Aktuelle Leadquellen: ' + (Array.isArray(answers.leadquellen) ? answers.leadquellen.join(', ') : '-') + '\n';
+    body += 'Region: ' + (answers.region || '-') + '\n';
+    body += 'Wichtig bei Anfragen: ' + (answers.wichtig || '-') + '\n';
+    body += 'Wunsch Anfragen/Woche: ' + (answers.wunsch_anfragen || '-') + '\n';
+    body += 'E-Mail: ' + (answers.email || '-') + '\n';
+    body += 'Vorname: ' + (answers.vorname || '-') + '\n';
+    body += 'Telefon: ' + (answers.telefon || '-') + '\n';
+
+    // Store in localStorage as backup
+    var submissions = JSON.parse(localStorage.getItem('quiz_submissions') || '[]');
+    submissions.push({ timestamp: new Date().toISOString(), answers: Object.assign({}, answers) });
+    localStorage.setItem('quiz_submissions', JSON.stringify(submissions));
+
+    // Send via mailto (fallback - can be replaced with API)
+    var subject = encodeURIComponent('Neuer Lead-Quiz Eintrag: ' + (answers.vorname || 'Unbekannt'));
+    var mailBody = encodeURIComponent(body);
+    var mailLink = document.createElement('a');
+    mailLink.href = 'mailto:info@claude.dzeksn.com?subject=' + subject + '&body=' + mailBody;
+    mailLink.style.display = 'none';
+    document.body.appendChild(mailLink);
+    mailLink.click();
+    document.body.removeChild(mailLink);
+
+    // Show result
+    setTimeout(function() {
+      showSlide(TOTAL_QUESTIONS + 1);
+    }, 800);
+  }
+
+  /* Keyboard shortcuts */
+  document.addEventListener('keydown', function(e) {
+    if (currentSlide === 0 || currentSlide > TOTAL_QUESTIONS) return;
+    var slide = document.getElementById('slide' + currentSlide);
+    if (!slide) return;
+    var grid = slide.querySelector('.options-grid');
+    if (!grid) return;
+    var cards = grid.querySelectorAll('.option-card');
+    var keyMap = 'abcdefghij';
+    var key = e.key.toLowerCase();
+    var idx = keyMap.indexOf(key);
+    if (idx >= 0 && idx < cards.length) {
+      cards[idx].click();
+    }
+    if (e.key === 'Enter') {
+      var nextBtn = slide.querySelector('.btn-primary, .btn-submit');
+      if (nextBtn && !nextBtn.disabled) nextBtn.click();
+    }
+  });
+
+  // Init
+  updateProgress();
+</script>
+
+</body>
+</html>
